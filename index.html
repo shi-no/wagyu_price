@@ -184,6 +184,10 @@
       </a>
     </div>
   </main>
+    <!-- ページトップボタン -->
+    <div id="page-top">
+      <a href="#"></a>
+    </div>
   <footer class="content-width">
     <a href="#">プライバシーポリシー</a>
     <p>&copy; 20XX -How Much 和牛 -</p>
@@ -231,7 +235,22 @@
       </div>
     </div>
   </div>
-  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js">
+    $(function(){
+      // #で始まる出発地点をクリックした場合に処理を実行
+      $('a[href^=#]').click(function() {
+        // 出発地点の値を取得
+        var href= $(this).attr("href");
+        // 到着地点を取得
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        // 到着地点を数値で取得
+        var position = target.offset().top;
+        // スムーススクロール
+        $('body,html').animate({scrollTop:position}, 400, 'swing');
+        return false;
+      });
+    });
+  </script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/main.js"></script>
 </body>
